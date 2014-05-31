@@ -9,6 +9,8 @@ class CreateLinks < ActiveRecord::Migration
       t.boolean :public, default: true
       # default is public ( requires no password )
 
+      t.string :authenticate, default: nil
+
       t.timestamps
     end
 

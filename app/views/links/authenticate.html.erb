@@ -1,5 +1,5 @@
 <h1>Authenticate</h1>
-<%= form_for :authenticate do |f|  %>
+<%= form_for :authenticate, url: redirect_with_authenticate_path(@link.shorten) do |f|  %>
   <div>
     <%= f.label :key  %>
     <%= f.password_field :key  %>

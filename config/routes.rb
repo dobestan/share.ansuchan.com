@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   match '/:shorten', to: 'links#redirect', via: :get
   match '/:shorten/authenticate', to: 'links#authenticate', via: :get, as: :link_authenticate
+  match '/:shorten/authenticate', to: 'links#redirect_with_authenticate', via: :post, as: :redirect_with_authenticate
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

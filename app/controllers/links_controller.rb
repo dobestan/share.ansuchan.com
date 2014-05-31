@@ -7,6 +7,11 @@ class LinksController < ApplicationController
   def index
     # show all links
     @links = Link.all()
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @links }
+    end
   end
 
   # actually i don't need show page
@@ -69,8 +74,20 @@ class LinksController < ApplicationController
   def authenticate
     @link = Link.find_by(shorten: params[:shorten])
 
-    if @link.public
+    if @link.public || @link.authenticate.nil?
+      # if link is public -> show all ( include demo user )
+      # if link has no authenticate key -> direct redirect
       redirect_to @link.original
+    end
+  end
+
+  def redirect_with_authenticate
+    link = Link.find_by(shorten: params[:shorten])
+    if link.authenticate == params[:authenticate][:key]
+      # Success
+      redirect_to link.original
+    else
+      redirect_to link_authenticate_path(link.shorten)
     end
   end
 
