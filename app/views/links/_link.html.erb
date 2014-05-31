@@ -1,0 +1,5 @@
+<li>
+<%= link.original  %> -> <%= link.shorten  %>
+|| <%= link_to "edit", edit_link_path(link.id) %>
+|| <%= link_to "destroy", link_path(link.id), method: :delete %>
+</li>
