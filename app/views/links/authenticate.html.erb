@@ -1,0 +1,11 @@
+<h1>Authenticate</h1>
+<%= form_for :authenticate do |f|  %>
+  <div>
+    <%= f.label :key  %>
+    <%= f.password_field :key  %>
+  </div>
+
+  <div>
+    <%= f.submit  %>
+  </div>
+<% end %>

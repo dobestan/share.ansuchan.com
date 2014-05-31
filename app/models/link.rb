@@ -7,6 +7,4 @@ class Link < ActiveRecord::Base
   validates :shorten, presence: true,
                       uniqueness: true,
                       length: { minimum: 4 }
-
-  validates :public, presence: true
 end

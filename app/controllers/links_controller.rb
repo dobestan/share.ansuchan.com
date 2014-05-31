@@ -1,4 +1,7 @@
 class LinksController < ApplicationController
+  before_action :signed_in_user, only: [:index]
+  before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
+
   # needs admin permission
 
   def index
@@ -49,6 +52,26 @@ class LinksController < ApplicationController
     end
 
     redirect_to links_path
+  end
+
+  def redirect
+    link = Link.find_by(shorten: params[:shorten])
+    if link && link.public
+      redirect_to link.original
+    elsif !link.public
+      # should ask for password
+      redirect_to link_authenticate_path(shorten: link.shorten)
+    else
+      render root_path
+    end
+  end
+
+  def authenticate
+    @link = Link.find_by(shorten: params[:shorten])
+
+    if @link.public
+      redirect_to @link.original
+    end
   end
 
   private
