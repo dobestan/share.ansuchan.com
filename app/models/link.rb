@@ -1,4 +1,6 @@
 class Link < ActiveRecord::Base
+  before_save { self.original = original.downcase }
+
   validates :original, presence: true,
                        uniqueness: true
 

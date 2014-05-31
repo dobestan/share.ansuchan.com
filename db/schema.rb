@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530102906) do
+ActiveRecord::Schema.define(version: 20140531115203) do
 
   create_table "links", force: true do |t|
     t.string   "original"
@@ -24,5 +24,16 @@ ActiveRecord::Schema.define(version: 20140530102906) do
 
   add_index "links", ["original"], name: "index_links_on_original", unique: true
   add_index "links", ["shorten"], name: "index_links_on_shorten", unique: true
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.boolean  "admin",           default: false
+    t.string   "remember_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
 
 end
