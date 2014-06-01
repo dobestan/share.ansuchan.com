@@ -1,39 +1,46 @@
-<div class="panel panel-default" ng-controller="LinkCtrl">
-  <div class="panel-heading">All Links</div>
-  <div class="panel-body">
-    <p><input class="form-control" type="text" ng-model="query" placeholder="looking for something?" /></p>
-  </div>
+<%= render "layouts/header"  %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Scope</th>
-        <th>Original Link</th>
-        <th>Shorten Link</th>
-        <% if current_user.admin?  %>
-          <th>Authenticate</th>
-          <th>Manage</th>
-        <% end %>
-      </tr>
-    </thead>
-      <tr ng-repeat="link in data | filter:query">
-        <td>{{ link.id }}</td>
-        <td><span class="label label-{{ link.label_class }}">{{ link.label_name }}</span></td>
-        <td><a href="{{ link.original }}">{{ link.original }}</a></td>
-        <td><a href="<%= root_path  %>{{ link.shorten }}"><%= root_path %>{{ link.shorten }}</a></td>
-        <% if current_user.admin?  %>
-          <td>{{ link.authenticate }}</td>
-          <td>
-            <button ng-click="editLink(link.id)" type="text" class="btn btn-warning btn-sm">edit</button>
-            <button ng-click="deleteLink(link.id)" type="text" class="btn btn-danger btn-sm">delete</button>
-          </td>
-        <% end %>
-      </tr>
-    <tbody>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="panel panel-default" ng-controller="LinkCtrl">
+    <div class="panel-heading">All Links</div>
+    <div class="panel-body">
+      <p><input class="form-control" type="text" ng-model="query" placeholder="looking for something?" /></p>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Scope</th>
+          <th>Original Link</th>
+          <th>Shorten Link</th>
+          <% if current_user.admin?  %>
+            <th>Authenticate</th>
+            <th>Manage</th>
+          <% end %>
+        </tr>
+      </thead>
+        <tr ng-repeat="link in data | filter:query">
+          <td>{{ link.id }}</td>
+          <td><span class="label label-{{ link.label_class }}">{{ link.label_name }}</span></td>
+          <td><a href="{{ link.original }}">{{ link.original }}</a></td>
+          <td><a href="<%= root_path  %>{{ link.shorten }}"><%= root_path %>{{ link.shorten }}</a></td>
+          <% if current_user.admin?  %>
+            <td>{{ link.authenticate }}</td>
+            <td>
+              <button ng-click="editLink(link.id)" type="text" class="btn btn-warning btn-sm">edit</button>
+              <button ng-click="deleteLink(link.id)" type="text" class="btn btn-danger btn-sm">delete</button>
+            </td>
+          <% end %>
+        </tr>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  
 </div>
+
+<%= render "layouts/footer"  %>
 
 <script type="text/javascript" charset="utf-8">
   UrlShortenerApp = angular.module('UrlShortener', []);
