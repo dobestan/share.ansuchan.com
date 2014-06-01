@@ -26,11 +26,11 @@
                   <div class="row">
                     <div class="col-xs-7">
                       <i class="fa fa-unlock-alt"></i>
-                      <a href="#password_recovery" id="forgot_from_1">데모 계정으로 구경하기</a>
+                      <a onclick="login_with_demo_user()" href="#">데모 유저로 구경하기</a>
                     </div>
                     <div class="col-xs-5">
                       <i class="fa fa-check"></i>
-                      <a href="#signup_window" id="signup_from_1">문의하기</a>
+                      <a href="#" id="signup_from_1">문의하기</a>
                     </div>
                   </div>
                 </div>		
@@ -42,6 +42,14 @@
     </div>
   </section>
 </section>	
+
+<script type="text/javascript" charset="utf-8">
+  var login_with_demo_user = function() {
+    $('#un_1').val("demo");
+    $('#pw_1').val("foobar");
+    $('#signIn_1').click();
+  }
+</script>
 
 <script>
 (function($) {
