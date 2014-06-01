@@ -17,3 +17,9 @@
  *= require Authenty/checkbox/orange.css
  *= require_self
  */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+body {
+  font-family: "Nanum Gothic"
+}
+

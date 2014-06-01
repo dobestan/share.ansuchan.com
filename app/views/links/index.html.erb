@@ -1,6 +1,35 @@
 <%= render "layouts/header"  %>
 
 <div class="container">
+  <% if !current_user.admin? %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        데모 계정을 사용중이시군요?!
+      </div>
+      <div class="panel-body">
+        안녕하세요. 안수찬(@dobestan)입니다. 데모 계정을 이용해주셔서 감사합니다.<br /><br />
+        개인적으로 사용하기 위한 서비스로 데모 계정으로는 <span class="label label-primary">public</span> 링크를 제외하고는 열람하실 수 없습니다.<br />
+        올 여름, 누구나 쉽게 사용할 수 있는 링크공유 서비스, 링스바이미(LinksBy.Me) 서비스로 찾아뵙겠습니다. 감사합니다.
+      </div>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        개발자이신가요?!
+      </div>
+      <div class="panel-body">
+        본 서비스에 대한 자세한 내용은 제 <a href="http://blog.ansuchan.com">개발 블로그</a>와 <a href="http://github.com/dobestan/share.ansuchan.com">Github Repository</a>
+        에서 살펴보실 수 있습니다.
+        ( 본 서비스의 프로토타입이였던 dev.ansuchan.com/links/ 서비스는 이제 사용하지 않습니다. / 프로토타입 : <a href="http://github.com/dobestan/dev.ansuchan.com">Github Repository</a> )<br /><br />
+        백엔드는 레일즈로 개발되었습니다. 이 페이지는 실험적으로 <a href="https://angularjs.org/">Angular.js</a>를 사용하고 있습니다.
+        아래의 검색창을 통해서 검색해보시면 angular.js의 특징인 Double Biniding 을 통하여 굉장히 빠르게 결과가 나오는 것을 확인하실 수 있습니다.<br />
+        <div class="pull-right">
+          <strong> @dobestan / dobestan@gmail.com </strong>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="panel panel-default" ng-controller="LinkCtrl">
     <div class="panel-heading">All Links</div>
     <div class="panel-body">
