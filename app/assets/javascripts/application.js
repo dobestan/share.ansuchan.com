@@ -11,6 +11,15 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require_tree
+//= require Authenty/jquery.icheck.min.js
+//= require Authenty/waypoints.min.js
+//
+//= require Authenty/authenty.js
+//
+//= require Authenty/preview/jquery.malihu.PageScroll2id.js
+//= require Authenty/preview/jquery.address-1.6.min.js
+//= require Authenty/preview/scrollTo.min.js
+//= require Authenty/preview/init.js
+//
 //= require turbolinks
-//= require_tree .

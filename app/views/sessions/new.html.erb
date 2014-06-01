@@ -1,15 +1,112 @@
-<%= form_for :session, url: sessions_path do |f| %>
-  <div>
-    <%= f.label :name  %>
-    <%= f.text_field :name  %>
-  </div>
+<section id="authenty_preview">
+  <section id="signin_main" class="authenty signin-main">
+    <div class="section-content">
+      <div class="wrap">
+        <div class="container">	  
+          <div class="form-wrap">
+            <div class="row">
+              <div class="title" data-animation="fadeInDown" data-animation-delay=".8s">
+                <h1>Sign in</h1>
+                <h5>로그인이 필요한 서비스입니다.</h5>
+              </div>
+              <div id="form_1" data-animation="bounceIn">
+                <div class="form-header">
+                  <i class="fa fa-user"></i>
+                </div>
+                <div class="form-main">
+                  <%= form_for :session, url: sessions_path do |f| %>
+                  <div class="form-group">
+                      <%= f.text_field :name, id: "un_1", class: "form-control", placeholder: "UserName", required: true  %>
+                      <%= f.password_field :password, id: "pw_1", class: "form-control", placeholder: "Password", required: true %>
+                  </div>
+                  <%= f.submit "Sign In", id: "signIn_1", class: "btn btn-block signin" %>
+                  <% end %>
+                </div>
+                <div class="form-footer">
+                  <div class="row">
+                    <div class="col-xs-7">
+                      <i class="fa fa-unlock-alt"></i>
+                      <a href="#password_recovery" id="forgot_from_1">데모 계정으로 구경하기</a>
+                    </div>
+                    <div class="col-xs-5">
+                      <i class="fa fa-check"></i>
+                      <a href="#signup_window" id="signup_from_1">문의하기</a>
+                    </div>
+                  </div>
+                </div>		
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>	
 
-  <div>
-    <%= f.label :password  %>
-    <%= f.password_field :password  %>
-  </div>
+<script>
+(function($) {
+  
+  // get full window size
+  $(window).on('load resize', function(){
+      var w = $(window).width();
+      var h = $(window).height();
 
-  <div>
-    <%= f.submit "Sign in"  %>
-  </div>
-<% end %>
+      $('section').height(h);
+  });		
+
+  // scrollTo plugin
+  $('#signup_from_1').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#forgot_from_1').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#signup_from_2').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#forgot_from_2').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#forgot_from_3').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  
+  
+  // set focus on input
+  var firstInput = $('section').find('input[type=text], input[type=email]').filter(':visible:first');
+  
+  if (firstInput != null) {
+      firstInput.focus();
+  }
+  
+  $('section').waypoint(function (direction) {
+    var target = $(this).find('input[type=text], input[type=email]').filter(':visible:first');
+    target.focus();
+  }, {
+      offset: 300
+  }).waypoint(function (direction) {
+    var target = $(this).find('input[type=text], input[type=email]').filter(':visible:first');
+    target.focus();
+  }, {
+      offset: -400
+  });
+  
+  
+  // animation handler
+  $('[data-animation-delay]').each(function () {
+      var animationDelay = $(this).data("animation-delay");
+      $(this).css({
+          "-webkit-animation-delay": animationDelay,
+          "-moz-animation-delay": animationDelay,
+          "-o-animation-delay": animationDelay,
+          "-ms-animation-delay": animationDelay,
+          "animation-delay": animationDelay
+      });
+  });
+  
+  $('[data-animation]').waypoint(function (direction) {
+      if (direction == "down") {
+          $(this).addClass("animated " + $(this).data("animation"));
+      }
+  }, {
+      offset: '90%'
+  }).waypoint(function (direction) {
+      if (direction == "up") {
+          $(this).removeClass("animated " + $(this).data("animation"));
+      }
+  }, {
+      offset: '100%'
+  });
+
+})(jQuery);
+</script>
