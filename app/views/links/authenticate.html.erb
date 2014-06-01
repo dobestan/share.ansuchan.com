@@ -1,0 +1,104 @@
+<section id="authenty_preview">
+  <section id="password_recovery" class="authenty password-recovery">
+    <div class="section-content">
+      <div class="wrap">
+        <div class="container">
+          <div class="form-wrap">
+            <div class="row">
+              <div class="col-xs-12 col-sm-3 brand" data-animation="fadeInUp">
+                <h2>@dobestan</h2>
+                <p>Private Link needs Authentication</p>
+              </div>
+              <div class="col-sm-1 hidden-xs">
+                <div class="horizontal-divider"></div>
+              </div>
+              <div class="col-xs-12 col-sm-8 main" data-animation="fadeInLeft" data-animation-delay=".5s">
+                <h2>암호를 입력하세요.</h2>
+                <p>혹시 암호를 잊으셨다면 개인적으로 연락 부탁드립니다.</p>
+                  <%= form_for :authenticate do |f| %>
+                  <div class="form-group">
+                    <%= f.password_field :key, class: "form-control", placeholder: "Authentication Key", required: true  %>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+                      <%= f.submit "Authenticate", class: "btn btn-block reset"  %>
+                    </div>
+                  </div>
+                  <% end %>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>	
+
+<script>
+(function($) {
+  
+  // get full window size
+  $(window).on('load resize', function(){
+      var w = $(window).width();
+      var h = $(window).height();
+
+      $('section').height(h);
+  });		
+
+  // scrollTo plugin
+  $('#signup_from_1').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#forgot_from_1').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#signup_from_2').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#forgot_from_2').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  $('#forgot_from_3').scrollTo({ easing: 'easeInOutQuint', speed: 1500 });
+  
+  
+  // set focus on input
+  var firstInput = $('section').find('input[type=text], input[type=email]').filter(':visible:first');
+  
+  if (firstInput != null) {
+      firstInput.focus();
+  }
+  
+  $('section').waypoint(function (direction) {
+    var target = $(this).find('input[type=text], input[type=email]').filter(':visible:first');
+    target.focus();
+  }, {
+      offset: 300
+  }).waypoint(function (direction) {
+    var target = $(this).find('input[type=text], input[type=email]').filter(':visible:first');
+    target.focus();
+  }, {
+      offset: -400
+  });
+  
+  
+  // animation handler
+  $('[data-animation-delay]').each(function () {
+      var animationDelay = $(this).data("animation-delay");
+      $(this).css({
+          "-webkit-animation-delay": animationDelay,
+          "-moz-animation-delay": animationDelay,
+          "-o-animation-delay": animationDelay,
+          "-ms-animation-delay": animationDelay,
+          "animation-delay": animationDelay
+      });
+  });
+  
+  $('[data-animation]').waypoint(function (direction) {
+      if (direction == "down") {
+          $(this).addClass("animated " + $(this).data("animation"));
+      }
+  }, {
+      offset: '90%'
+  }).waypoint(function (direction) {
+      if (direction == "up") {
+          $(this).removeClass("animated " + $(this).data("animation"));
+      }
+  }, {
+      offset: '100%'
+  });
+
+})(jQuery);
+</script>

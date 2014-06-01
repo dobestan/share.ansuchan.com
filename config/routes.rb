@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'links#index'
+
+  match '/signin', to: 'sessions#new', via: :get
+  match '/signout', to: 'sessions#destroy', via: :destroy
+
+  resources :links
+  resources :users
+  resources :sessions
+
+  match '/:shorten', to: 'links#redirect', via: :get
+  match '/:shorten/authenticate', to: 'links#authenticate', via: :get, as: :link_authenticate
+  match '/:shorten/authenticate', to: 'links#redirect_with_authenticate', via: :post, as: :redirect_with_authenticate
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
