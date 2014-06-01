@@ -6,7 +6,11 @@ class LinksController < ApplicationController
 
   def index
     # show all links
-    @links = Link.all()
+    if current_user.admin?
+      @links = Link.all
+    else
+      @links = Link.where(public: true)
+    end
 
     respond_to do |format|
       format.html
@@ -40,7 +44,7 @@ class LinksController < ApplicationController
 
   def update
     @link = Link.find(params[:id])
-    if @link.save
+    if @link.update_attributes(link_params)
       redirect_to links_path
     else
       flash[:error] = "Error"
@@ -63,11 +67,12 @@ class LinksController < ApplicationController
     link = Link.find_by(shorten: params[:shorten])
     if link && link.public
       redirect_to link.original
-    elsif !link.public
+    elsif link && !link.public
       # should ask for password
       redirect_to link_authenticate_path(shorten: link.shorten)
     else
-      render root_path
+      flash[:success] = "요청하신 페이지를 찾을 수 없습니다."
+      redirect_to root_path
     end
   end
 
