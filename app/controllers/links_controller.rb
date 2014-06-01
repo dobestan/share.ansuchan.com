@@ -88,7 +88,7 @@ class LinksController < ApplicationController
 
   def redirect_with_authenticate
     link = Link.find_by(shorten: params[:shorten])
-    if link.authenticate == params[:authenticate][:key]
+    if link.authenticate == authenticate_params[:key]
       # Success
       redirect_to link.original
     else
@@ -99,5 +99,9 @@ class LinksController < ApplicationController
   private
     def link_params
       params.require(:link).permit(:original, :shorten, :message)
+    end
+
+    def authenticate_params
+      params.require(:authenticate).permit(:key)
     end
 end

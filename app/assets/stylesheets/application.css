@@ -11,5 +11,9 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require Authenty/animation.css
+ *= require Authenty/authenty.css
+ *= require Authenty/preview.css
+ *= require Authenty/checkbox/orange.css
  *= require_self
  */
