@@ -52,8 +52,8 @@
         <tr ng-repeat="link in data | filter:query">
           <td>{{ link.id }}</td>
           <td><span class="label label-{{ link.label_class }}">{{ link.label_name }}</span></td>
-          <td><a href="{{ link.original }}">{{ link.original }}</a></td>
-          <td><a href="<%= root_path  %>{{ link.shorten }}"><%= root_path %>{{ link.shorten }}</a></td>
+          <td><a href="{{ link.original }}">{{ link.title }}</a></td>
+          <td><a href="<%= root_path  %>{{ link.shorten }}">http://share.ansuchan.com/{{ link.shorten }}</a></td>
           <% if current_user.admin?  %>
             <td>{{ link.authenticate }}</td>
             <td>
@@ -103,4 +103,18 @@
       };
 
       }]);
+</script>
+
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+  </script>
+
+  <style>
+  label {
+    display: inline-block;
+    width: 5em;
+  }
+  </style>
 </script>

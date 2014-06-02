@@ -4,7 +4,6 @@ class CreateLinks < ActiveRecord::Migration
       t.string :original
       t.string :shorten
 
-      t.text :message
       t.string :title
       # will parse title from html file
 
