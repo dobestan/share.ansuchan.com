@@ -36,10 +36,12 @@
       <p>
       <input class="form-control" type="text" ng-model="query" placeholder="looking for something?" />
 
+      <% if current_user.admin? %>
         <%= form_for :link, url: links_path do |f|  %>
           <%= f.text_field :original, class: "form-control", placeholder: "http://ansuchan.com" %>
           <%= f.submit "빠르게 줄이기!", class: "btn btn-primary pull-right"  %>
         <% end %>
+      <% end %>
       </p>
     </div>
 
