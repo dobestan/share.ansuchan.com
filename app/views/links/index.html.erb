@@ -33,7 +33,16 @@
   <div class="panel panel-default" ng-controller="LinkCtrl">
     <div class="panel-heading">All Links</div>
     <div class="panel-body">
-      <p><input class="form-control" type="text" ng-model="query" placeholder="looking for something?" /></p>
+      <p>
+      <input class="form-control" type="text" ng-model="query" placeholder="looking for something?" />
+
+      <% if current_user.admin? %>
+        <%= form_for :link, url: links_path do |f|  %>
+          <%= f.text_field :original, class: "form-control", placeholder: "http://ansuchan.com" %>
+          <%= f.submit "빠르게 줄이기!", class: "btn btn-primary pull-right"  %>
+        <% end %>
+      <% end %>
+      </p>
     </div>
 
     <table class="table">
@@ -52,8 +61,8 @@
         <tr ng-repeat="link in data | filter:query">
           <td>{{ link.id }}</td>
           <td><span class="label label-{{ link.label_class }}">{{ link.label_name }}</span></td>
-          <td><a href="{{ link.original }}">{{ link.original }}</a></td>
-          <td><a href="<%= root_path  %>{{ link.shorten }}"><%= root_path %>{{ link.shorten }}</a></td>
+          <td><a href="{{ link.original }}">{{ link.title }}</a></td>
+          <td><a href="<%= root_path  %>{{ link.shorten }}">http://share.ansuchan.com/{{ link.shorten }}</a></td>
           <% if current_user.admin?  %>
             <td>{{ link.authenticate }}</td>
             <td>
@@ -103,4 +112,18 @@
       };
 
       }]);
+</script>
+
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+  </script>
+
+  <style>
+  label {
+    display: inline-block;
+    width: 5em;
+  }
+  </style>
 </script>

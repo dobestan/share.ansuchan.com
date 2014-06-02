@@ -3,15 +3,13 @@ require 'spec_helper'
 describe Link do
   before do
     @link = Link.new( original: "http://blog.ansuchan.com",
-                      shorten: "blog",
-                      message: "@dobestan's blog" )
+                      shorten: "blog" )
   end
 
   subject { @link }
 
   it { should respond_to :original }
   it { should respond_to :shorten }
-  it { should respond_to :message }
   it { should respond_to :public }
 
   # Original

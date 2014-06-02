@@ -20,20 +20,16 @@ demo = User.create( name: "demo",
 
 # Homepage ( Link #1 )
 homepage = Link.create( original: "http://ansuchan.com",
-                        shorten: "homepage",
-                        message: "Personal Homepage by @dobestan" )
+                        shorten: "homepage" )
 
 # Tech Blog ( Link #2 )
 blog = Link.create( original: "http://blog.ansuchan.com",
-                    shorten: "blog",
-                    message: "Personal Tech Blog by @dobestan")
+                    shorten: "blog" )
 
 # Github ( Link #3 )
-github = Link.create( original: "http://github.com/dobestan",
-                       shorten: "github",
-                       message: "Github by @dobestan")
+github = Link.create( original: "https://github.com/dobestan",
+                       shorten: "github" )
 
 # Facebook ( Link #4 )
-facebook = Link.create( original: "http://facebook.com/dobestan",
-                        shorten: "facebook",
-                        message: "Facebook")
+facebook = Link.create( original: "https://facebook.com/dobestan",
+                        shorten: "facebook" )
