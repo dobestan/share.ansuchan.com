@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140531115203) do
     t.string   "original"
     t.string   "shorten"
     t.text     "message"
+    t.string   "title"
     t.boolean  "public",       default: true
     t.string   "authenticate"
     t.datetime "created_at"
