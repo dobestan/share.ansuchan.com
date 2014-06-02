@@ -23,7 +23,7 @@ class Link < ActiveRecord::Base
     end
 
     def validate_shorten
-      self.shorten = create_new_shorten if self.shorten == ""
+      self.shorten = create_new_shorten if self.shorten.blank?
     end
 
     def create_new_shorten

@@ -33,7 +33,14 @@
   <div class="panel panel-default" ng-controller="LinkCtrl">
     <div class="panel-heading">All Links</div>
     <div class="panel-body">
-      <p><input class="form-control" type="text" ng-model="query" placeholder="looking for something?" /></p>
+      <p>
+      <input class="form-control" type="text" ng-model="query" placeholder="looking for something?" />
+
+        <%= form_for :link, url: links_path do |f|  %>
+          <%= f.text_field :original, class: "form-control", placeholder: "http://ansuchan.com" %>
+          <%= f.submit "빠르게 줄이기!", class: "btn btn-primary pull-right"  %>
+        <% end %>
+      </p>
     </div>
 
     <table class="table">
