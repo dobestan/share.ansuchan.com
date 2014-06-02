@@ -1,17 +1,32 @@
-<h1>This is new link page</h1>
+<%= render "layouts/header"  %>
+<div class="container">
+  <h1>새 링크 등록하기</h1>
 
-<%= form_for @link do |f| %>
-  <div>
-    <%= f.label :original  %>
-    <%= f.text_field :original  %>
-  </div>
+  <%= form_for @link do |f| %>
+    <div class="input-group">
+      <span class="input-group-addon">Original Link</span>
+      <%= f.text_field :original, class: "form-control", placeholder: "http://ansuchan.com" %>
+    </div>
 
-  <div>
-    <%= f.label :shorten  %>
-    <%= f.text_field :shorten  %>
-  </div>
+    <div class="input-group">
+      <span class="input-group-addon">Shorten Link</span>
+      <%= f.text_field :shorten, class: "form-control", placeholder: "http://ansuchan.com" %>
+    </div>
 
-  <div>
-    <%= f.submit "shorten!"  %>
-  </div>
-<% end %>
+    <div class="input-group">
+      <span class="input-group-addon">Public</span>
+      <%= f.select :public, options_for_select([true, false]) %>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon">Authenticate Key</span>
+      <%= f.password_field :authenticate, class: "form-control", placeholder: "Authentication Key" %>
+    </div>
+
+
+    <div>
+      <%= f.submit "줄여라 찬찬찬!", class: "btn btn-primary btn-lg pull-right"  %>
+    </div>
+  <% end %>
+</div>
+<%= render "layouts/footer"  %>
