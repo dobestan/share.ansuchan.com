@@ -1,6 +1,10 @@
 <%= render "layouts/header"  %>
 
 <div class="container">
+  <div class="page-header">
+    <h1>전체 링크보기</h1>
+  </div>
+
   <% if !current_user.admin? %>
     <div class="panel panel-danger">
       <div class="panel-heading">
@@ -30,7 +34,7 @@
     </div>
   <% end %>
 
-  <div class="panel panel-default" ng-controller="LinkCtrl">
+  <div class="panel panel-info" ng-controller="LinkCtrl">
     <div class="panel-heading">All Links</div>
     <div class="panel-body">
       <p>

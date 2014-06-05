@@ -7,6 +7,15 @@ class Link < ActiveRecord::Base
                        uniqueness: true
 
   private
+    def crawl_original_by_binary
+      # Dependency : original
+
+      require 'open-uri'
+      require 'nokogiri'
+
+      Nokogiri::HTML(open(self.original)).to_s.unpack("B*")
+    end
+
     def crawl_original
       # Dependency : original
 
@@ -16,10 +25,26 @@ class Link < ActiveRecord::Base
       Nokogiri::HTML(open(self.original))
     end
 
-    def parse_title
-      # Dependency : crawl_original
+    def convert_binary_to_utf8(binary)
+      binary.encode('utf-8', 'binary', :invalid => :replace, :undef => :replace)
+    end
 
-      self.title = crawl_original.css('title').inner_html.to_s
+    def convert_encoding_to_UTF8(string)
+      require 'iconv'
+
+      ms949_to_utf8 = Iconv.new("UTF-8", "EUC-KR")
+
+      return ms949_to_utf8.iconv(string) if string.encoding == "MS949"
+      return string
+    end
+
+    def parse_title
+      if !self.title
+        # Dependency : crawl_original
+        # source = convert_binary_to_utf8(crawl_original_by_binary)
+        source  = convert_encoding_to_UTF8(crawl_original)
+        self.title = source.css('title').inner_html.to_s
+      end
     end
 
     def validate_shorten
