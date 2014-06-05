@@ -39,7 +39,7 @@ class Link < ActiveRecord::Base
     end
 
     def parse_title
-      if !self.title
+      if self.title == ""
         # Dependency : crawl_original
         # source = convert_binary_to_utf8(crawl_original_by_binary)
         source  = convert_encoding_to_UTF8(crawl_original)
