@@ -2,6 +2,14 @@
 <div class="container">
   <h1>새 링크 등록하기</h1>
 
+  <% if @link.errors.any? %>
+    <% @link.errors.full_messages.each do |msg| %>
+      <ul>
+        <li><%= msg  %></li>
+      </ul>
+    <% end %>
+  <% end %>
+
   <%= form_for @link do |f| %>
     <div class="input-group">
       <span class="input-group-addon">Original Link</span>
@@ -11,6 +19,11 @@
     <div class="input-group">
       <span class="input-group-addon">Shorten Link</span>
       <%= f.text_field :shorten, class: "form-control", placeholder: "http://ansuchan.com" %>
+    </div>
+
+    <div class="input-group">
+      <span class="input-group-addon">Title</span>
+      <%= f.text_field :title, class: "form-control", placeholder: "제 개인 홈페이지입니다." %>
     </div>
 
     <div class="input-group">

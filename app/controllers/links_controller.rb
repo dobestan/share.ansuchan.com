@@ -98,7 +98,7 @@ class LinksController < ApplicationController
 
   private
     def link_params
-      params.require(:link).permit(:original, :shorten, :public, :authenticate)
+      params.require(:link).permit(:original, :shorten, :title, :public, :authenticate)
     end
 
     def authenticate_params
