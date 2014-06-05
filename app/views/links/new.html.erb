@@ -1,6 +1,8 @@
 <%= render "layouts/header"  %>
 <div class="container">
-  <h1>새 링크 등록하기</h1>
+  <div class="page-header">
+    <h1>새 링크 등록하기</h1>
+  </div>
 
   <% if @link.errors.any? %>
     <% @link.errors.full_messages.each do |msg| %>
