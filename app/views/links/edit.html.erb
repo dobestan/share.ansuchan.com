@@ -12,8 +12,18 @@
   </div>
 
   <div>
-    <%= f.label :message  %>
-    <%= f.text_area :message %>
+    <%= f.label :title  %>
+    <%= f.text_area :title %>
+  </div>
+
+  <div>
+    <%= f.label :public  %>
+    <%= f.select :public, options_for_select([true, false]) %>
+  </div>
+
+  <div>
+    <%= f.label :authenticate  %>
+    <%= f.password_field :authenticate %>
   </div>
 
   <div>
